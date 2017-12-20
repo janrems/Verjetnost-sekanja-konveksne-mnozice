@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.9)  20 DEC 2017 00:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.9)  20 DEC 2017 17:35
 entering extended mode
 **./kratko_porocilo.tex
 (kratko_porocilo.tex
@@ -565,9 +565,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/Jan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (15.04074pt too wide) in paragraph at lines 55--56
-[]\T1/cmr/m/n/10 Glavna na-loga v te-o-re-ti£-nem delu na-loge, bo to-rej apli-
-ci-ra-nje Cauchy-Croftonove
+Overfull \hbox (12.23015pt too wide) in paragraph at lines 55--56
+[]\T1/cmr/m/n/10 Glavna na-loga v te-o-re-ti£-nem delu na-loge bo to-rej \T1/cm
+r/m/it/10 apli-ci-ra-nje Cauchy-Croftonove
  []
 
 [2] [3] (kratko_porocilo.aux) ) 
@@ -578,7 +578,7 @@ Here is how much of TeX's memory you used:
  7133 multiletter control sequences out of 15000+200000
  15284 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,26p,876b,202s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,6n,26p,885b,202s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Jan\AppData\Local\MiKTeX\2.9\fonts\pk
 \ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\Jan\AppData\Local\MiKTeX\2.9\
 fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk> <C:\Users\Jan\AppData\Local\MiK
@@ -594,7 +594,7 @@ s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX
 lic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symb
 ols/msbm10.pfb>
-Output written on kratko_porocilo.pdf (3 pages, 130508 bytes).
+Output written on kratko_porocilo.pdf (3 pages, 130429 bytes).
 PDF statistics:
  241 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
