@@ -1,0 +1,76 @@
+\documentclass[a4paper]{article}
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{marvosym}
+\usepackage{amssymb,amsmath}
+\title{Verjetnost sekanja konveksne podmnožice}
+\author{Peter Dolenc, Jan Rems \\ Finančni praktikum \\ Finančna matematika, Fakulteta za matematiko in fiziko}
+\date{2017}
+\newtheorem{definicija}{Definicija}
+\newtheorem{izrek}{Izrek}
+
+
+\begin{document}
+\title{%
+  Verjetnost sekanja konveksne podmnožice -\\
+   \large Kratko poročilo \\}
+
+\author{Peter Dolenc, Jan Rems}
+
+\maketitle
+
+\pagebreak
+
+\section{Uvod}
+
+
+V nalogi se bova soočila z naslednjim problemom. Zamislimo si, da imamo na Evklidski ravnini neko \textit{konveksno množico} $C$ , ki vsebuje \textit{konveksno podmnožico } $C'$. Najina naloga bo določiti verjetnost dogodka, da naključna premica, ki seka množico $C$ seka tudi podmnožico $C'$. Gre za klasični problem s področja stohastične geometrije, ki se ga da posplošiti tudi na druge veje verjetnostne teorije. \textit{Hipoteza}, ki jo postavljava trdi, \textit{da bo verjetnost zgoraj omenjenega dogodka enaka razmerju obsegov konveksnih množic}. Najina glavna naloga bo, da postavljeno hipotezo najprej \textit{teoretično} utemeljiva, nato pa izvedeva še \textit{eksperiment}, kjer se bova s pomočjo programa, ki bo generiral naključne premice in konveksne množice, poizkusila čim bolj približati željenemu rezultatu. 
+
+
+\vspace{4 mm}
+
+
+\section{Analitična rešitev problema}
+
+Za začetek vpeljimo nekaj pojmov, ki so potrebni za formuliranje klasičnega izreka s področja integralske geometrije, ki nam bo v pomoč pri izpeljavi rezultata, ki ga predvideva najina hipoteza.
+
+\begin{definicija}
+Množico vseh neorientiranih premic na $\mathbb{R}^2$ definiramo kot: $$ \{ (p,\theta)|0 \le \theta \le 2 \pi , p \ge 0\},$$ kjer $p$ predstavlja oddaljenost premice od izhodišča, $\theta$ pa kot premice glede na $x$ os.
+\end{definicija}
+
+\vspace{3 mm}
+
+S tem ko imamo definirano množico vseh premic na $\mathbb{R}^2$, lahko na tej množici podamo tudi \textit{mero} s  predpisom $ \int \int d\theta dp$. Sedaj lahko podamo željeni izrek.
+
+\begin{izrek}[Cauchy-Croftonova formula]
+ Naj bo $c$ regularna ravninska krivulja in $n_c (p, \theta)$  število točk, pri katerih premica, parametrizirana na način, kot je podan v definiciji, seka krivuljo $c$. Potem za dolžino krivulje $L(c)$ veja: $$L(c) = \frac{1}{2}\int \int n_c (p, \theta) d\theta dp $$
+ \end{izrek}
+
+\vspace{3 mm}
+
+Zaradi zgornjega rezultata je iskanje preseka premice s konveksno množico smiselno prevesti na problem iskanja presečišč premice in \textit{sklenjene regularne krivulje}, ki omejuje dano konveksno množico. Tako nas namesto razmerja obsegov zanima \textit{razmerje dolžine krivulj}, kjer ena omejuje konveksno množico $C$, druga pa njeno konveksno podmnožico $C'$. Tudi krivulji bomo ustrezno poimenovali $\gamma$ in $\gamma '$. Krivuljam, ki omejujejo konveksne množice, pravimo \textit{konveksne krivulje}. 
+
+Glavna naloga v teoretičnem delu naloge bo torej \textit{apliciranje Cauchy-Croftonove formule na primer konveksnih krivulj}, čemur bo sledila \textit{izpeljava} izražave verjetnosti dogodka, da premica ki seka krivuljo $\gamma$, seka tudi krivuljo $\gamma'$, z razmerjem dolžine obravnavanih krivulj. 
+
+
+
+\section{Načrt eksperimentalnega dela}
+
+Eksperimentalnega dela projekta se bova lotila z metodami \textit{Monte Carlo}. To so simulacijske metode, ki s pomočjo naključnih števil in velikega števila izračunov in ponavljanja omogočajo predvidevanje obnašanja zapletenih matemtičnih sistemov. Ideja je sledeča: \textit{generirati dve naključni konveksni krivulji} $\gamma$ in $\gamma'$, kjer je $\gamma'$ strogo vsebovana v $\gamma$ in pa \textit{naključno premico}, ki seka $\gamma$ ter ugotoviti, ali premica seka tudi $\gamma'$. Z mnogo ponovitvami implementiranega algoritma, bomo lahko \textit{ocenili} verjetnost, da naključna premica, ki seka večjo konveksno krivuljo, seka tudi manjšo.
+
+\textit{Simulacije geometrijskega problema} se bova lotila postopoma. Na začetku bova poskušala preveriti najino hipotezo na enostavnejših konveksnih krivuljah - \textit{elipsah}, kasneje pa bova obravnavala konveksne krivulje \textit{splošnejše} oblike. Pri delu z elipsami je cilj napisati program, ki bo sposoben obvladovanja osnovnih ukazov: \textit{generiranje elips in premic} ter prepoznavanja, kdaj te premice res sekajo naše objekte. Ta orodja nama bodo pomagala pri nadaljnem delu, ko bova kot že omenjeno z generiranjem naključnih konveksnih krivulj, problem \textit{posplošila}.
+
+Drugi del izziva bo predstavljal \textit{generiranje naključnih premic}. Za to obstaja več ekvivalentnih načinov. Eden takšnih je tak, kot je opisano v definicji: naključno določimo par $(p,\theta)$, kjer $p$ predstavlja oddaljenost premice do izhodišča, $\theta$ pa kot med premico in $x$ osjo. Ker naju zanimajo le tiste premice, ki sekaj večjo od krivulj se pravi $\gamma$, bova poizkusila tudi z \textit{alternativnim pristopom}, h generiranju naključnih premic in sicer z določitvijo dveh \textit{naključnih točk} ter s tem premice, ki bo skozi njiju potekala. Prva točka bo ležala \textit{znotraj večje od krivulj}, med tem ko bo druga \textit{kjer koli na dani ravnini}. Tako bova dobila generirane le premice, ki bodo z gotovostjo sekale $\gamma$ in bova zato morala preveriti zgolj, ali sekajo tudi $\gamma'$.
+
+Po opravljenih simulacijah naju bo, poleg \textit{ujemanja} eksperimentalnega rezultata s postavljeno hipotezo, zanimalo tudi kako hitro bo dobljeni približek \textit{konvergiral} k točnemu  rezultatu, ki ga bova dobila z analitičnim pristopom. Poleg tega bova pozorna tudi na \textit{časovno zahtevnost} napisanih algoritmov in njihovo obnašanje v odvisnosti od izbire načina generiranja naključnih premic. 
+
+Delo bo potekalo v programskem okolju \textit{Matlab}.
+
+ 
+
+
+
+
+\end{document}
