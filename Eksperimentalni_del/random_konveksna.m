@@ -1,14 +1,13 @@
 function r = random_konveksna (k)
-    for j = 20 : 30
+    for j = 50 : 60
         for i = 1:k
-            a = 0.6.* rand(j,1) + 0.3;
-            b = 0.6.* rand(j,1) + 0.3;
+            a = rand(j,1) -0.5;
+            b = rand(j,1) -0.5;
+            
             h = convhull(a,b);
             plot(a(h),b(h))
-            hold on
-            plot(t,z)
-            hold off
             figure()
+            
         
         end 
     end 

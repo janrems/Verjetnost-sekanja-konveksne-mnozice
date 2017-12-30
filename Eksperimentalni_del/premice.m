@@ -1,9 +1,9 @@
-function[seznam]=premice(n)
+function[seznam]=premice(n,pmax)
 seznam=zeros(n,2);
 for i=1:n
-    a=rand(1);
-    seznam(i,1)=a;    
-    b=2*pi*rand(1);
-    seznam(i,2)=b;
+    p=pmax*rand(1);
+    seznam(i,1)=p;    
+    theta=2*pi*rand(1);
+    seznam(i,2)=theta;
 end
 end
