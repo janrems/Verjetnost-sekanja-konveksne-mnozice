@@ -1,5 +1,5 @@
 function [p,o] = verjetnost_elipsa (xmax,ymax,n)
-
+ seme=69; rand('seed',seme);
     [velika,mala,pmax] = elipsa(xmax,ymax);
     A = vrni_tocke(n,pmax);
 %     for i = 1:n
@@ -14,8 +14,7 @@ function [p,o] = verjetnost_elipsa (xmax,ymax,n)
 %     hold off
     
     [n_pres_v, A_nova] = presecisca(A,velika);
-    
-    
+     
     [n_pres_m] = presecisca_majhna(A_nova,mala);
     
     p = n_pres_m/n_pres_v 
