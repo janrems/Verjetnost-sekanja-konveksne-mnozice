@@ -1,4 +1,4 @@
-function [p,o] = verjetnost_elipsa (xmax,ymax,n)
+function [p,o] = verjetnost_elipsa_hitra (xmax,ymax,n)
 
     [velika,mala,pmax] = elipsa(xmax,ymax);
     A = vrni_tocke(n,pmax);
@@ -10,21 +10,20 @@ function [p,o] = verjetnost_elipsa (xmax,ymax,n)
 %     plot(velika(:,1), velika(:,2))
 %     hold on
 %     plot(mala(:,1), mala(:,2))
-%     axis([-5 5 -5 5])
+% 
 %     hold off
     
-    [n_pres_v, A_nova] = presecisca(A,velika);
+    n = presecisca_vec(A,velika,pmax);
     
     
-    [n_pres_m] = presecisca_majhna(A_nova,mala);
+    m = presecisca_vec(A,mala,pmax);
     
-    p = n_pres_m/n_pres_v 
+    p = m/n;
     
     o_velika = dolzina(velika(:,1),velika(:,2));
     
     o_mala = dolzina(mala(:,1),mala(:,2));
     
     o = o_mala/o_velika
-    
     
 end

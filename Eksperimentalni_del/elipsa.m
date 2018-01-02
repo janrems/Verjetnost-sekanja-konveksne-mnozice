@@ -1,6 +1,6 @@
 function[rezult,rezultm, pmax]=elipsa(xmax, ymax)
 %t teèe med 0 in 2*pi
-t = 0:0.01:2*pi;
+t = 0:0.001:2*pi;
 rezult=zeros(length(t), 2);
 a=xmax.*rand(1);
 b=ymax.*rand(1);

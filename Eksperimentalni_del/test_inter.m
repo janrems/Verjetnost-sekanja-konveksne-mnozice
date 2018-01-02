@@ -1,4 +1,4 @@
-x = 3*cos(0:0.01:2*pi);
-y = 3*sin(0:0.01:2*pi);
-plot(x,y)
-dolzina(x,y)
+    x = cos(0:0.001:2*pi);
+    y = sin(0:0.001:2*pi);
+    plot(x,y)
+    dolzina(x,y)
