@@ -1,5 +1,9 @@
 function [p,o] = verjetnost_elipsa (xmax,ymax,n)
+<<<<<<< HEAD
  seme=15; rand('seed',seme);
+=======
+ seme=170; rand('seed',seme);
+>>>>>>> 4a9e513e2a8cfceb5fb4a51e20f60c15b22e56b9
     [velika,mala,pmax] = elipsa(xmax,ymax);
     A = vrni_tocke(n,pmax);
 %     for i = 1:n
@@ -12,7 +16,11 @@ function [p,o] = verjetnost_elipsa (xmax,ymax,n)
 %     plot(mala(:,1), mala(:,2))
 %     axis([-5 5 -5 5])
 %     hold off
+<<<<<<< HEAD
     
+=======
+% %     
+>>>>>>> 4a9e513e2a8cfceb5fb4a51e20f60c15b22e56b9
     [n_pres_v, A_nova] = presecisca(A,velika);
      
     [n_pres_m] = presecisca_majhna(A_nova,mala);
