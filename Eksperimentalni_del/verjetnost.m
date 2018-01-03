@@ -1,7 +1,8 @@
 function [p,o] = verjetnost(n_tock,n_premic)
+seme=69; rand('seed',seme);
 [a,b,h] = random_konveksna(n_tock);
 [a1,b1,l] = notranja_konveksna(a,b,h);
-pmax = max(max(a(h)),max(b(h)));
+pmax = max(a(h)) + 0.1;
 A = vrni_tocke(n_premic,pmax);
 
 [n_pres_v, A_nova] = presecisca (A,[a(h) b(h)]);
