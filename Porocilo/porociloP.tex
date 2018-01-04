@@ -1,0 +1,57 @@
+\documentclass[a4paper]{article}
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{marvosym}
+\usepackage{amssymb,amsmath}
+\title{Verjetnost sekanja konveksne podmnožice}
+\author{Peter Dolenc, Jan Rems \\ Finančni praktikum \\ Finančna matematika, Fakulteta za matematiko in fiziko}
+\date{2017}
+\newtheorem{definicija}{Definicija}
+\newtheorem{izrek}{Izrek}
+
+
+\begin{document}
+\title{%
+  Verjetnost sekanja konveksne podmnožice -\\
+   \large Poročilo dela \\}
+
+\author{Peter Dolenc, Jan Rems}
+
+\maketitle
+
+\pagebreak
+
+\section{Uvod}
+\section{Generiranje premic}
+Pri projektu se je izkazalo, da je zelo pomembno, kako generiramo naključne premice. Da dobimo željeni rezultat, namreč da je verjetnost sekanja tudi male krivulje enak razmerju obsegov obeh krivulj, je potrebno generirati par $(p, \theta)$ iz enakomerno zvezne porazdelitve, kjer $p$ predstavlja oddaljenost iz izhodišča in teče med $0$ in najbolj oddaljeno točko večje konveksne krivulje od izhodišča, $\theta$ pa predstavlja kot med premico in $x$-osjo ter teče med $0$ in $2\pi$. Matriko velikosti$n\times2$ s temi pari parametrov sva potem s pomožno funkcijo spremenila v matriko velikosti $n\times2$, kjer je prvi stolpec vseboval koeficiente $k$, drugi pa začetne vrednosti $n$ iz eksplicitnega zapisa premic $y=k\cdot x+n$. To nama je omogočilo, da sva določila daljice s krajišči izven večje krivulje, s katerimi sva sekala obe krivulji.
+
+Poskusila sva tudi alternativno: generirala sva pare točk v večji konveksni množici in skozi njih potegnila premice. Izkazalo se je, da tak način generiranja premic ne pripelje do istega rezultata, saj je že za elipse v središču prišlo do velike napake. Da so premice generirane enakomerno glede na parametre $p$ in $\theta$ se je torej izkazalo za ključno.
+
+\section{Generiranje konveksnih krivulj}
+\subsection{Elipse}
+Eksperimentalni del projekta je potekal v dveh fazah. V prvi sva najino hipotezo želela pokazati na enostavnejših konveksnih krivuljah - elipsah. Napisala sva funkcijo ``elipsa'', ki za vhodne podatke dobi parametra $xmax$ in $ymax$, ki določata največji možni števili $a$ in $b$, ki se pojavita v parametriziranem zapisu elipse $x=a \cos(t), y=b \sin(t), t\in [0, 2\pi)$. Kot izhod vrne dva poligona točk v obliki elipse z naključno izbranima parametroma $a \in (0, xmax)$ in $b \in (0, ymax)$ iz enakomerne zvezne porazdelitve za veliko elipso in $a_m \in (0, a)$ in $b_m \in (0, b)$ za malo elipso. V zadnjem koraku sva združili funkciji, ki generirata premice in elipsi ter dodala funkcijo, ki šteje presečišča med krivuljami. Za lažjo predstavo si oglejmo sliko 1:
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=60mm]{graf_primer.jpg}
+\caption{Primer generiranih elips in premic \label{overflow}}
+\end{figure} 
+
+Na sliki 1 vidimo 2 elipsi generirani s funkcijo ``elipsa'' s parametroma $xmax=3$ in $ymax=3$ in 15 premic. V zadnjem koraku sva uporabilo funkcijo, ki šteje presečišča premic z obema elipsama ter število presečišč z manjšo krivuljo delila s številom presečišč z večjo. Rezultat sva primerjala z oceno razmerij obsega. 
+
+Razmeroma zaneslijve rezultate sva dobila, če sva preko posameznega para elips generirala več kot 300 premic. Zato sva generirala 1000 parov elips in za vsak par 1000 premic, da sva lahko ocenila rezultate v povprečju. Povprečje absolutnih vrednosti razlike med razmerjem obsegov in razmerjem premic, ki sekajo eno in drugo krivuljo je bila 0.0125, če pa dovolimo predznačeno razliko, se je v povprečju zmanjšala na 0.000046 \footnote[1]{Celotna tabela rezultatov je dosegljiva na github repozitoriju}.
+
+Zanimalo naju je tudi, kako hitra je konvergenca najine metode, oz. koliko premic je potrebno generirati za posamezen par elips, da bo rezultat točen. Rezultate sva dobila tako, da sva za vsak par elips primerjala absolutno razliko do točnega rezultata po vsakih 30 dodatnih premicah. Na vzorcu 100 elips je razmerje prikazano na grafu 1: 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=90mm]{graf_elipsa2.jpg}
+\caption{Graf napake v razmerju s številom premic \label{overflow}}
+\end{figure} 
+
+
+\end{document}
+
+Iz grafa je razvidno, da se z večanjem premic vedno bolj približujemo pravemu rezultatu, vendar je konvergenca počasna. 
