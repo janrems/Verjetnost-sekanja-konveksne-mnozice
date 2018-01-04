@@ -1,6 +1,10 @@
 function[rezult,rezultm, pmax]=elipsa(xmax, ymax)
 %t teèe med 0 in 2*pi
-t = 0 : 0.05 : 2*pi;
+<<<<<<< HEAD
+t = 0:0.01:2*pi;
+=======
+t = 0:0.05:2*pi;
+>>>>>>> 4a9e513e2a8cfceb5fb4a51e20f60c15b22e56b9
 rezult=zeros(length(t), 2);
 a=xmax.*rand(1);
 b=ymax.*rand(1);
@@ -9,17 +13,13 @@ am = a*rand(1);
 bm = b*rand(1);
 rezultm=zeros(length(t), 2);
 
-rezult(:,1) = a*cos(t);
-rezult(:,2) = b*sin(t);
-rezult(length(t)+1,:) = rezult(1,:);
+rezult(:,1) = a*cos(0:0.05:2*pi);
+rezult(:,2) = b*sin(0:0.05:2*pi);
 
-rezultm(:,1) = am*cos(t);
-rezultm(:,2) = bm*sin(t);
-rezultm(length(t)+1,:) = rezultm(1,:);
-
+rezultm(:,1) = a*cos(0:0.05:2*pi);
+rezultm(:,2) = b*sin(0:0.05:2*pi);
 % plot(rezult(:,1), rezult(:,2))
 % hold on
 % plot(rezultm(:,1), rezultm(:,2))
 % hold off
-% rezultm
 end

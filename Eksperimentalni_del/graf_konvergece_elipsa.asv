@@ -1,0 +1,3 @@
+30
+for i 1:length(tabela_ospe(:,1))
+    plot(tabela_ospe(

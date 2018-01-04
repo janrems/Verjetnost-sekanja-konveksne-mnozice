@@ -32,17 +32,11 @@ function [a1,b1,l] = notranja_konveksna(a,b,h)
     b1 = b;
     a1(h) = [];
     b1(h) = [];
-    k = 15;
-    
-    while k > 0    
+    k = 0;
+    while k == 0    
         vzorec = nakljucni_vzorec([a1';b1'],40);
-        if length(vzorec(1,:)) > 3
-            k = 0;
-        else
-            k =k-1;
-        end
-    end
-    
+        if length(vzorec(1,:)) < 3
+        
     a1 = vzorec(1,:)';
     b1 = vzorec(2,:)';
     l = convhull(a1,b1);

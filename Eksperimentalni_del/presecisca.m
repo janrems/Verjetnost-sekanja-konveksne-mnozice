@@ -9,7 +9,7 @@ function [n_pres, A_nova] = presecisca (A,velika)
         n = (length(intersections(A(i,[1 3]),A(i,[2 4]),velika(:,1),velika(:,2))))/2;
         n_pres = n_pres + n;
         
-        if n == 0
+        if n < 1
             izbris = [izbris, i];
         end           
         

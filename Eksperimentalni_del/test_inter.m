@@ -1,5 +1,4 @@
-    x = cos(0:0.001:2*pi);
-    y = sin(0:0.001:2*pi);
-    plot(x,y)
-    dolzina(x,y)
-    
+k = 0    
+for i = [1 2 3]
+        k = k +i
+    end
