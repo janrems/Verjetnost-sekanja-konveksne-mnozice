@@ -6,11 +6,11 @@ function [tabela] = opt_stevilo_premic(n_poizkusov)
             [p,o,vk,nk] = verjetnost(30,st_premic(i),j);
             tabela(j,i) = abs(p-o);
         end
-        plot(vk(:,1),vk(:,2))
-        hold on
-        plot(nk(:,1),nk(:,2))
-        hold off
-        figure()
+%         plot(vk(:,1),vk(:,2))
+%         hold on
+%         plot(nk(:,1),nk(:,2))
+%         hold off
+%         figure()
     end
 end
         
