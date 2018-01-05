@@ -21,9 +21,14 @@
 \author{Peter Dolenc, Jan Rems}
 
 \maketitle
-
+\thispagestyle{empty}
 \pagebreak
-
+\clearpage
+\tableofcontents
+\thispagestyle{empty}
+\pagebreak
+\clearpage
+\setcounter{page}{1}
 \section{Uvod}
 
 
@@ -124,8 +129,8 @@ Za generiranje elips sva napisala funkcijo ``elipsa'', ki za vhodne podatke dobi
 
 Na sliki 1 vidimo 2 elipsi generirani s funkcijo ``elipsa'' s parametroma $xmax=3$ in $ymax=3$ in 15 premic z naključnima parametroma $(p, \theta)$ kot opisano zgoraj. V zadnjem koraku sva uporabilo funkcijo, ki šteje presečišča premic z obema elipsama ter število presečišč z manjšo krivuljo delila s številom presečišč z večjo. Rezultat sva primerjala z oceno razmerij obsega. 
 
-
-
+\section{Implementacija algoritma}
+Do sedaj sva napisala algoritme, ki so uspešno generirali elipse, krožnice, splošne konveksne krivulje in pa premice s parametrizacijo $(p, \theta)$. V naslednjem koraku sva želela dobiti algoritem, ki bo preštel, koliko naših premic seka večjo oziroma manjšo konveksno krivuljo. V ta namen sva iz spletnega portala MathWorks vzela funkcijo ``intersections'', ki prejme vektor točk, ki opisujejo krivuljo in vrne vektor $x$ koordinat presečišč. Ker je za najine potrebe dovolj preveriti, če se krivulji sekata, naju je bolj zanimala dolžina vrnjenega vektorja. To delo opravlja funkcija ``presecisca''. Na koncu sva poračunala še dolžini konveksnih krivulj in ju delila med seboj za primerjavo rezultatov.
 
 \subsection{Analiza dobljenih rezultatov}
 Razmeroma zaneslijve rezultate sva dobila, če sva preko posameznega para konveksnih krivulj generirala več kot 300 premic. Zato sva generirala 1000 parov elips in 400 parov konveksnih krivulj ter za vsak par 1000 premic in preštela presečišča z obema krivuljama. Rezultate sva shranila v matriko velikosti $1000 \times 4$ za elipse, ki po vrsticah prikazujejo posamezen poskus, po stolpcih pa razmerje obsegov, razmerje presečišč, absolutno razliko in predznačeno razliko oziroma matriko $400 \times 5$ za splošne krivulje, ki vsebuje dodaten stolpec: števila sekanja večje krivulje. 
@@ -133,23 +138,23 @@ Zanimalo naju je tudi, kako hitra je konvergenca najine metode, oz. koliko premi
 
 
 \subsubsection{Elipsa}
-Povprečje absolutnih vrednosti razlike med razmerjem obsegov in razmerjem premic, ki sekajo eno in drugo krivuljo je bila 0.0125, če pa dovolimo predznačeno razliko, se je v povprečju zmanjšala na 0.000046 \footnote[1]{Celotna tabela rezultatov je dosegljiva na github repozitoriju}. Standardni odklon razlik je bil TUKI VSTA STANDARDNI ODKLON. Rezultati se skladajo z najinimi pričakovanji, morda je nekoliko presenetljiv velik standardni odklon, kar pomeni, da metoda ne deluje najbolje za posamezne krivulje, točne rezultate dobimo šele v povprečju.
+Povprečje absolutnih vrednosti razlike med razmerjem obsegov in razmerjem premic, ki sekajo eno in drugo krivuljo je bila 0.0125, če pa dovolimo predznačeno razliko, se je v povprečju zmanjšala na 0.000046 \footnote[1]{Celotna tabela rezultatov je dosegljiva na github repozitoriju}. Standardni odklon razlik je bil TUKI VSTA STANDARDNI ODKLON. Rezultati se skladajo z najinimi pričakovanji, absolutna napaka je za to število premic relativno majhna.
 
 Graf 2 prikazuje konvergenco metode na primeru elips.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=90mm]{graf_elipsa2.jpg}
-\caption{Graf napake v razmerju s številom premic \label{overflow}}
+\caption{Graf napake v odvisnosti od števila premic za elipse \label{overflow}}
 \end{figure} 
 
-\end{document}
 
 Iz grafa je razvidno, da se z večanjem premic vedno bolj približujemo pravemu rezultatu, vendar je konvergenca počasna. 
 
- 
+\section{Sklep}
+Pri projektu sva se na dva načina prepričala o veljavnosti naše hipoteze: da je verjetnost sekanja manjše konveksne krivulje, če sekamo večjo, enaka razmerju dolžine obeh krivulj. Najprej sva ob naslanjanju na Cauchy-Crofton fromulo in definicijo pogojne verjetnosti podala idejo dokaza v teoretičnem smislu, v drugem delu pa sva izvedla še eksperimente, ki so hipotezo potrdili na konkretnih krivuljah. 
+Končni algoritem je generiral naključni konveksni krivulji in naključne premice ter vrnil razmerje obsegov in razmerje premic, ki so sekale obe krivulje. Ugotovila sva, da je konvergenca odvisna od števila premic, ki sekajo večjo krivuljo. To je najbolj očitno pri krožnicah, saj v tem primeru lahko paramater $p$ pri premicah omejimo kar na radij krožnice in tako zagotovimo, da bodo vse premice sekale vsaj večjo krožnico. Pri splošnih krivuljah je tako omejevanje parametra $p$ težje, zato se nekaj premic "izgubi" in je konvergenca počasnejša. 
 
-
-
+Med izdelovanjem projekta sva ugotovila, da je ključnega pomena, da premice generiramo kot par $(p, \theta)$, kot je opisano v poglavju $3.2$. Hipotezo sva ob tej predpostavki potrdila. Za izboljšanje algoritma bi bilo smiselno spremeniti funkcijo ``intersections'', ki bi namesto koordinat presečišč preverjala samo, če se krivulji sekata. Tako bi lahko algoritem izvajali v hitrejšem času in rezultate preverjali z večjim številom premic. Kljub temu sva se z rezultati zelo približala teoretičnim vrednostim. Morda bi bilo smiselno tudi točke, okoli katerih sva generirala konveksno ovojnico, izbrati pod kakšnimi drugimi omejitvami, vendar verjameva, da to na rezultat ne bi smelo vplivati.
 
 \end{document}
