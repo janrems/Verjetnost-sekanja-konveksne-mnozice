@@ -1,0 +1,3 @@
+function indeksi = rand_sample(vektor)
+    l = length(vektor);
+    indeks = randperm(
