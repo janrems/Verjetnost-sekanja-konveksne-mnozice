@@ -1,7 +1,7 @@
-function [p,o,n_pres_v] = verjetnost_elipsa (xmax,ymax,n,j)
+function [p,o,n_pres_v] = verjetnost_kroznica (rmax,n,j)
     seme= j; rand('seed',seme);
-    [velika,mala,pmax] = elipsa(xmax,ymax);
-    A = vrni_tocke(n,pmax,pmax);
+    [velika,mala,pmax,r,rm] = kroznica_premaknjena(rmax);
+    A = vrni_tocke(n,pmax,pmax+0.01);
 %     for i = 1:n
 %         
 %         plot(A(i,[1 3]),A(i,[2 4]))
@@ -19,11 +19,12 @@ function [p,o,n_pres_v] = verjetnost_elipsa (xmax,ymax,n,j)
     
     p = n_pres_m/n_pres_v ;
     
-    o_velika = dolzina(velika(:,1),velika(:,2));
+    o_velika = 2*pi*r;
     
-    o_mala = dolzina(mala(:,1),mala(:,2));
+    o_mala = 2*pi*rm;
     
     o = o_mala/o_velika;
+    
     
     
 end

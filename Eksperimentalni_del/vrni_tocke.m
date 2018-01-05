@@ -1,9 +1,9 @@
-function [A] = vrni_tocke(n,pmax)
+function [A] = vrni_tocke(n,pmax,krajisce)
     B = skupaj(n,pmax);
-    y1 = -pmax .*B(:,1) + B(:,2);
-    y2 = pmax .*B(:,1) + B(:,2);
-    x1 = -pmax * ones(n,1);
-    x2 = pmax * ones(n,1);
+    y1 = -krajisce .*B(:,1) + B(:,2);
+    y2 = krajisce .*B(:,1) + B(:,2);
+    x1 = -krajisce * ones(n,1);
+    x2 = krajisce * ones(n,1);
     A = [x1 y1 x2 y2];
 %     for i = 1:n
 %         

@@ -32,7 +32,7 @@ V nalogi se bova soočila z naslednjim problemom. Zamislimo si, da imamo na Evkl
 \vspace{4 mm}
 
 
-\section{Analitična rešitev problema}
+\section{Teoretična opredelitev problema in analitična izpeljava}
 
 Za začetek vpeljimo nekaj pojmov, ki so potrebni za formuliranje klasičnega izreka s področja integralske geometrije, ki nam bo v pomoč pri izpeljavi rezultata, ki ga predvideva najina hipoteza.
 
@@ -58,7 +58,7 @@ Sedaj pa podajmo še naslednji pomembni izrek.
 
 Zaradi zgornjega rezultata je iskanje preseka premice s konveksno množico smiselno prevesti na problem iskanja presečišč premice in \textit{sklenjene regularne krivulje}, ki omejuje dano konveksno množico. Tako nas namesto razmerja obsegov zanima \textit{razmerje dolžine krivulj}, kjer ena omejuje konveksno množico $C$, druga pa njeno konveksno podmnožico $C'$. Tudi krivulji bomo ustrezno poimenovali $\gamma$ in $\gamma '$. Krivuljam, ki omejujejo konveksne množice, pravimo \textit{konveksne krivulje}. 
 
-Označimo z $\Gamma$ dogodek, da naključno izbrana premica $l$ seka krivuljo $\gamma$ ($\Gamma = \{l \cap \gamma \ne  \emptyset \}$), z $\Gamma'$ pa dogodek da premica $l$ seka vsebovano krivuljo $\gamma'$  ($\Gamma' = \{l \cap \gamma' \ne  \emptyset \}$).  Verjetnost dogodka, da naključna premica, ki seka krivuljo $\gamma$, seka tudi $\gamma$ torej izrazimo na naslednji način
+Označimo z $\Gamma$ dogodek, da naključno izbrana premica $l$ seka krivuljo $\gamma$ tj. $\Gamma = \{l \cap \gamma \ne  \emptyset \}$, z $\Gamma'$ pa dogodek da premica $l$ seka vsebovano krivuljo $\gamma'$  tj. $\Gamma' = \{l \cap \gamma' \ne  \emptyset \}$.  Verjetnost dogodka, da naključna premica, ki seka krivuljo $\gamma$, seka tudi $\gamma$ torej izrazimo na naslednji način
 
 \begin{align}
 P(\Gamma' | \Gamma) = \frac{P( \Gamma' \cap  \Gamma)}{P( \Gamma)} = \frac{P( \Gamma')}{P( \Gamma)} \label{eq1}
@@ -84,9 +84,23 @@ Sedaj ko smo intuitivno analitično dokazali postavljeno hipotezo, si oglejmo š
 
 
 
-\section{Načrt eksperimentalnega dela}
+\section{Eksperimentalno delo}
 
-Eksperimentalnega dela projekta se bova lotila z metodami \textit{Monte Carlo}. To so simulacijske metode, ki s pomočjo naključnih števil in velikega števila izračunov in ponavljanja omogočajo predvidevanje obnašanja zapletenih matemtičnih sistemov. Ideja je sledeča: \textit{generirati dve naključni konveksni krivulji} $\gamma$ in $\gamma'$, kjer je $\gamma'$ strogo vsebovana v $\gamma$ in pa \textit{naključno premico}, ki seka $\gamma$ ter ugotoviti, ali premica seka tudi $\gamma'$. Z mnogo ponovitvami implementiranega algoritma, bomo lahko \textit{ocenili} verjetnost, da naključna premica, ki seka večjo konveksno krivuljo, seka tudi manjšo.
+\subsection{Shema eksperimenta}
+
+Eksperimentalnega dela projekta se bova lotila z metodo \textit{Monte Carlo}. Z generiranjem velikega števila naključnih premic in veliko ponovitvami poizkusa, bova želela potrditi postavljeno hipotezo, oz. se čim bolj približati rezultatu, ki jo le-ta napoveduje. Ker je naša mera $\mu$ invariantna za toge premike, je vseeno, kje v $\mathbb{R}^2$ se nahajata konveksni krivulji. Zato zadostuje, da delamo zgolj z krivuljami, ki so generirane simetrično glede na izhodišče kordinatnega sistema, oziroma so tako generirani vhodni podatki, ki množice določajo. Eksperiment sva razdelila na štiri podnaloge:
+
+\begin{itemize}
+\item generiranje premic
+\item generiranje konveksnih krivulj
+\item implementacija algoritma, ki analizira sekanje premic s krivuljami
+\item analiza dobljenih rezultatov in učinkovitosti algoritma
+\end{itemize}
+
+
+
+
+To so simulacijske metode, ki s pomočjo naključnih števil in velikega števila izračunov in ponavljanja omogočajo predvidevanje obnašanja zapletenih matemtičnih sistemov. Ideja je sledeča: \textit{generirati dve naključni konveksni krivulji} $\gamma$ in $\gamma'$, kjer je $\gamma'$ strogo vsebovana v $\gamma$ in pa \textit{naključno premico}, ki seka $\gamma$ ter ugotoviti, ali premica seka tudi $\gamma'$. Z mnogo ponovitvami implementiranega algoritma, bomo lahko \textit{ocenili} verjetnost, da naključna premica, ki seka večjo konveksno krivuljo, seka tudi manjšo.
 
 \textit{Simulacije geometrijskega problema} se bova lotila postopoma. Na začetku bova poskušala preveriti najino hipotezo na enostavnejših konveksnih krivuljah - \textit{elipsah}, kasneje pa bova obravnavala konveksne krivulje \textit{splošnejše} oblike. Pri delu z elipsami je cilj napisati program, ki bo sposoben obvladovanja osnovnih ukazov: \textit{generiranje elips in premic} ter prepoznavanja, kdaj te premice res sekajo naše objekte. Ta orodja nama bodo pomagala pri nadaljnem delu, ko bova kot že omenjeno z generiranjem naključnih konveksnih krivulj, problem \textit{posplošila}.
 

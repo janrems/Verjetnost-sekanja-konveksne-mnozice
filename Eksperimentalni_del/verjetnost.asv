@@ -1,10 +1,11 @@
-function [p,o,n_pres_v] = verjetnost(n_tock,n_premic,j)
+function [p,o,vk,nk] = verjetnost(n_tock,n_premic,j)
 seme=j; rand('seed',seme);
 [a,b,h] = random_konveksna(n_tock);
+vk = [a(h) b(h)];
 [a1,b1,l] = notranja_konveksna(a,b,h);
-pmax = sqrt(max(abs(a(h)))^2 + max(abs(b(h)))^2) + 0.001;
-krajisce = max(abs(a(h))) + 0.001;
-A = vrni_tocke(n_premic,pmax,krajisce);
+nk = [a1(l) b1(l)];
+pmax = max(abs(a(h))) + 0.001;
+A = vrni_tocke(n_premic,pmax);
 
     
 %     for i = 1:length(A(:,1))
