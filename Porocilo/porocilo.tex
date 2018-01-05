@@ -3,14 +3,17 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
+\usepackage{fancyvrb}
 \usepackage{marvosym}
+\usepackage{xcolor}
 \usepackage{amssymb,amsmath}
 \title{Verjetnost sekanja konveksne podmnožice}
 \author{Peter Dolenc, Jan Rems \\ Finančni praktikum \\ Finančna matematika, Fakulteta za matematiko in fiziko}
-\date{2017}
+\date{Januar, 2018}
 \newtheorem{definicija}{Definicija}
 \newtheorem{izrek}{Izrek}
 \addto\captionsenglish{\renewcommand{\figurename}{Graf}}
+\usepackage{listings}
 
 
 \begin{document}
@@ -21,13 +24,18 @@
 \author{Peter Dolenc, Jan Rems}
 
 \maketitle
-
+\thispagestyle{empty}
 \pagebreak
-
+\clearpage
+\tableofcontents
+\thispagestyle{empty}
+\pagebreak
+\clearpage
+\setcounter{page}{1}
 \section{Uvod}
 
 
-V nalogi se bova soočila z naslednjim problemom. Zamislimo si, da imamo na Evklidski ravnini neko \textit{konveksno množico} $C$ , ki vsebuje \textit{konveksno podmnožico } $C'$. Najina naloga bo določiti verjetnost dogodka, da naključna premica, ki seka množico $C$ seka tudi podmnožico $C'$. Gre za klasični problem s področja stohastične geometrije, ki se ga da posplošiti tudi na druge veje verjetnostne teorije. \textit{Hipoteza}, ki jo postavljava trdi, \textit{da bo verjetnost zgoraj omenjenega dogodka enaka razmerju obsegov konveksnih množic}. Nalogo sva razdelila, na dva dela. V prvem delu, problemu najprej postaviva \textit{teoretični}  okvir in rešitev izpeljeva analitično. Nato pa se problema lotiva še \textit[{eksperimentalno} in spiševa program, ki se reševanja problema loti numerično.
+V nalogi se bova soočila z naslednjim problemom. Zamislimo si, da imamo na Evklidski ravnini neko \textit{konveksno množico} $C$ , ki vsebuje \textit{konveksno podmnožico } $C'$. Najina naloga bo določiti verjetnost dogodka, da naključna premica, ki seka množico $C$ seka tudi podmnožico $C'$. Gre za klasični problem s področja stohastične geometrije, ki se ga da posplošiti tudi na druge veje verjetnostne teorije. \textit{Hipoteza}, ki jo postavljava trdi, \textit{da bo verjetnost zgoraj omenjenega dogodka enaka razmerju obsegov konveksnih množic}. Nalogo sva razdelila na dva dela. V prvem delu problemu najprej postaviva \textit{teoretični}  okvir in rešitev izpeljeva analitično. Nato pa se problema lotiva še \textit{eksperimentalno} in spiševa program, ki se reševanja problema loti numerično.
 
 
 \vspace{4 mm}
@@ -114,7 +122,7 @@ Poskusila sva tudi alternativno: generirala sva pare točk v večji konveksni mn
 Pri generiranju konveksnih krivulj sva se odločila da iz enostavnejših konveksnih krivulj preideva na zahtevnejše in splošnejše primere. Začela sva z generiranjem elips, kjer je tudi notranja elipsa kocentrična. Nato sva obnašanje algoritma želela preveriti na primerih, kjer notranje krivulje niso nujno kocentrične, torej se nahajajo na poljubnem mestu znotraj zunanje krivulje. Zaradi olajšanja konstrukcije takih krivulj sva se odločila za delo s krožnicami. Nazadnje pa sva zgenerirala še naključni oziroma poljubni konveksni krivulji. 
 
 \subsubsection{Elipse}
-Za generiranje elips sva napisala funkcijo ``elipsa'', ki za vhodne podatke dobi parametra $xmax$ in $ymax$, ki določata največji možni števili $a$ in $b$, ki se pojavita v parametriziranem zapisu elipse $x=a \cos(t), y=b \sin(t), t\in [0, 2\pi)$. Kot izhod vrne dva poligona točk v obliki elipse z naključno izbranima parametroma $a \in (0, xmax)$ in $b \in (0, ymax)$ iz enakomerne zvezne porazdelitve za veliko elipso in $a_m \in (0, a)$ in $b_m \in (0, b)$ za malo elipso. V zadnjem koraku sva združili funkciji, ki generirata premice in elipsi ter dodala funkcijo, ki šteje presečišča med krivuljami. Za lažjo predstavo si oglejmo sliko 1:
+Za generiranje elips sva napisala funkcijo ``elipsa'', ki za vhodne podatke dobi parametra $xmax$ in $ymax$, ki določata največji možni števili $a$ in $b$, ki se pojavita v parametriziranem zapisu elipse $x=a \cos(t), y=b \sin(t), t\in [0, 2\pi)$. Kot izhod vrne dva poligona točk v obliki elipse z naključno izbranima parametroma $a \in (0, xmax)$ in $b \in (0, ymax)$ iz enakomerne zvezne porazdelitve za veliko elipso in $a_m \in (0, a)$ in $b_m \in (0, b)$ za malo elipso. Za lažjo predstavo si oglejmo sliko 1:
 
 \begin{figure}[h]
 \centering
@@ -122,21 +130,19 @@ Za generiranje elips sva napisala funkcijo ``elipsa'', ki za vhodne podatke dobi
 \caption{Primer generiranih elips in premic \label{overflow}}
 \end{figure} 
 
-Na sliki 1 vidimo 2 elipsi generirani s funkcijo ``elipsa'' s parametroma $xmax=3$ in $ymax=3$ in 15 premic z naključnima parametroma $(p, \theta)$ kot opisano zgoraj. V zadnjem koraku sva uporabilo funkcijo, ki šteje presečišča premic z obema elipsama ter število presečišč z manjšo krivuljo delila s številom presečišč z večjo. Rezultat sva primerjala z oceno razmerij obsega. 
+Na sliki 1 vidimo 2 elipsi generirani s funkcijo ``elipsa'' s parametroma $xmax=3$ in $ymax=3$ ter 15 premic z naključnima parametroma $(p, \theta)$ kot opisano zgoraj. 
 
 
-
-
-
-
+\subsection{Implementacija algoritma}
+Do sedaj sva uspešno generirala naključne premice glede na parametrizacijo $(p, \theta)$ in pare konveksnih krivulj, sedaj pa bi želela napisati tudi algoritem, ki bo pravilno štela presečišča med premicami in konveksnimi krivuljami. V ta namen sva iz spletnega portala MathWorks vzela funkcijo ``intersections'', ki je sposobna iz vektorjev točk, ki opisujejo naše krivulje, vrniti vektor presečišč opisanih krivulj. Za najine potrebe je bilo sicer dovolj ugotoviti, ali se krivulji sploh sekata, zato naju je bolj konkretno zanimala dolžina vektorja, ki je bil vrnjen kot rezultat. To je opravljala funkcija ``presecisca''. V zadnjem koraku sva združila vse komponente in dobila sva algoritem, ki ocenjuje verjetnost sekanja male krivulje, če smo sekali tudi večjo. Na koncu sva poračunala še dolžine konveksnih krivulj in ju delila med seboj za primerjavo dobljenega rezultata.
 
 \subsection{Analiza dobljenih rezultatov}
-Razmeroma zaneslijve rezultate sva dobila, če sva preko posameznega para konveksnih krivulj generirala več kot 300 premic. Zato sva generirala 1000 parov elips in 400 parov konveksnih krivulj ter za vsak par 1000 premic in preštela presečišča z obema krivuljama. Rezultate sva shranila v matriko velikosti $1000 \times 4$ za elipse, ki po vrsticah prikazujejo posamezen poskus, po stolpcih pa razmerje obsegov, razmerje presečišč, absolutno razliko in predznačeno razliko oziroma matriko $400 \times 5$ za splošne krivulje, ki vsebuje dodaten stolpec: števila sekanja večje krivulje. 
+Razmeroma zaneslijve rezultate sva dobila, če sva preko posameznega para konveksnih krivulj generirala več kot 300 premic. Zato sva generirala 1000 parov elips in 400 parov konveksnih krivulj ter za vsak par 1000 premic in preštela presečišča z obema krivuljama. Rezultate sva shranila v matriko velikosti $1000 \times 4$ za elipse, ki po vrsticah prikazujejo posamezen poskus, po stolpcih pa razmerje obsegov, razmerje presečišč, absolutno razliko in predznačeno razliko, oziroma matriko $400 \times 5$ za splošne krivulje, ki vsebuje dodaten stolpec: števila sekanja večje krivulje. 
 Zanimalo naju je tudi, kako hitra je konvergenca najine metode, oz. koliko premic je potrebno generirati za posamezen par elips, da bo rezultat razmeroma točen. Rezultate sva dobila tako, da sva za vsak par konveksnih krivulj primerjala absolutno razliko do točnega rezultata po vsakih 30 dodatnih premicah. 
 
 
 \subsubsection{Elipsa}
-Povprečje absolutnih vrednosti razlike med razmerjem obsegov in razmerjem premic, ki sekajo eno in drugo krivuljo je bila 0.0125, če pa dovolimo predznačeno razliko, se je v povprečju zmanjšala na 0.000046 \footnote[1]{Celotna tabela rezultatov je dosegljiva na github repozitoriju}. Standardni odklon razlik je bil TUKI VSTA STANDARDNI ODKLON. Rezultati se skladajo z najinimi pričakovanji, morda je nekoliko presenetljiv velik standardni odklon, kar pomeni, da metoda ne deluje najbolje za posamezne krivulje, točne rezultate dobimo šele v povprečju.
+Povprečje absolutnih vrednosti razlike med razmerjem obsegov in razmerjem premic, ki sekajo eno in drugo krivuljo je bila 0.0125, če pa dovolimo predznačeno razliko, se je v povprečju zmanjšala na 0.000046. Standardni odklon razlik je bil TUKI VSTA STANDARDNI ODKLON \footnote[1]{Celotna tabela rezultatov je dosegljiva na github repozitoriju}. Rezultati se skladajo z najinimi pričakovanji, morda je nekoliko presenetljiv velik standardni odklon, kar pomeni, da metoda ne deluje najbolje za posamezne krivulje, točne rezultate dobimo šele v povprečju.
 
 Graf 2 prikazuje konvergenco metode na primeru elips.
 
@@ -150,9 +156,7 @@ Graf 2 prikazuje konvergenco metode na primeru elips.
 
 Iz grafa je razvidno, da se z večanjem premic vedno bolj približujemo pravemu rezultatu, vendar je konvergenca počasna. 
 
- 
-
-
-
+\section{Sklep}
+Pri projektu sva se na dva načina prepričala v veljavnost naše hipoteze: da je verjetnost sekanja manjše konveksne krivulje, če sekamo večjo, enaka razmerju dolžin konveksnih krivulj. V teoretičnem delu sva pokazala idejo, zakaj to velja, z naslanjanjem na Cauchy-Croftonovo formulo in definicijo pogojne verjetnosti. V eksperimentalnem delu sva s pomočjo generiranja naključnih premic, elips, krožnic in splošnih krivulj pokazala tudi 
 
 \end{document}
