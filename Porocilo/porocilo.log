@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.20)  5 JAN 2018 13:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.20)  5 JAN 2018 15:39
 entering extended mode
-**//Spin/DolencP14$/_System/Desktop/verjetnost_sekanja/Verjetnost-sekanja-konve
-ksne-mnozice/Porocilo/porocilo.tex
+**"U:/3. letnik/Financnipraktikum/FP_projekt/Verjetnost-sekanja-konveksne-mnozi
+ce/Porocilo/porocilo.tex"
 
-(//Spin/DolencP14$/_System/Desktop/verjetnost_sekanja/Verjetnost-sekanja-konvek
-sne-mnozice/Porocilo/porocilo.tex
+("U:/3. letnik/Financnipraktikum/FP_projekt/Verjetnost-sekanja-konveksne-mnozic
+e/Porocilo/porocilo.tex"
 LaTeX2e <2016/02/01>
 Babel <3.9n> and hyphenation patterns for 69 languages loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -542,12 +542,12 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  3301 strings out of 493622
- 37666 string characters out of 3143635
+ 37635 string characters out of 3143635
  101437 words of memory out of 3000000
  6651 multiletter control sequences out of 15000+200000
  18358 words of font info for 51 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 27i,9n,26p,1152b,228s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,9n,26p,1143b,228s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-super-t1.enc}<C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTe
