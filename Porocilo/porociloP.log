@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.20)  5 JAN 2018 13:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.20)  5 JAN 2018 15:40
 entering extended mode
 **"U:/3. letnik/Financnipraktikum/FP_projekt/Verjetnost-sekanja-konveksne-mnozi
 ce/Porocilo/porociloP.tex"
@@ -531,16 +531,22 @@ File: graf_elipsa2.jpg Graphic file (type jpg)
 Package pdftex.def Info: graf_elipsa2.jpg used on input line 57.
 (pdftex.def)             Requested size: 256.0748pt x 192.05493pt.
 
-[3 <./graf_primer.jpg> <./graf_elipsa2.jpg>] [4] (porociloP.aux)
+[3 <./graf_primer.jpg> <./graf_elipsa2.jpg>]
+Overfull \hbox (21.35498pt too wide) in paragraph at lines 66--67
+\T1/cmr/m/n/10 Splo²ni kon-ve-ksni kri-vu-lji ge-ne-ri-rava s po-mo-£jo dveh fu
+nk-cij: "ran-dom_konveksna"in
+ []
+
+[4] (porociloP.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3279 strings out of 493622
- 37321 string characters out of 3143635
+ 3286 strings out of 493622
+ 37426 string characters out of 3143635
  101393 words of memory out of 3000000
- 6633 multiletter control sequences out of 15000+200000
+ 6640 multiletter control sequences out of 15000+200000
  17672 words of font info for 50 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  27i,8n,26p,1059b,228s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -557,7 +563,7 @@ gram Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm0800.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm1000.pfb><C:/Program Files/MiKTeX 
 2.9/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/public/cm-super/sfrm1728.pfb>
-Output written on porociloP.pdf (4 pages, 217284 bytes).
+Output written on porociloP.pdf (4 pages, 219040 bytes).
 PDF statistics:
  70 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -63,17 +63,17 @@ Zanimalo naju je tudi, kako hitra je konvergenca najine metode, oz. koliko premi
 Za ponazoritev zamaknjenih krivulj sva se, iz praktičnih razlogov pri generiranju le-teh, odločila za krožnice. Funkciji "kroznica\_zamaknjena" sva podala parameter $rmax$, ki določa interval $(0,rmax)$ na katerem naključno določiva radij večjega kroga $r$. Nato znotraj kroga naključno generirava točko podano s parom $(k,fi)$, kjer je $k$ oddaljenost od izhodišča, $fi$ pa kot, ki ga oklepata abcisa in krajevni vektor do naše točke. Radij manjše krožnice $rm$ generirava naključno na intervalu $(0,(r-k))$. Nato krožnici parametrizirava, na podoben način kot elipsi. $x$ kordinate množice točk so podane kot vektor $x = r*cos(t)$, $y$ kordinate pa kot vektor $y = r*sin(t)$, kjer je t vektor točk med 0 in $2\pi$ z razmikom 0.05. Manjšo krožnico parametrizirava na podoben način.  Funkcija torej vrne matriki, kjer v vsaki stolpca predstavljata $x$ in $y$ kordinate množice točk, ki krožnici določajo. 
 
 \subsubsection{Splošna  konveksna krivulja}
-Splošni konveksni krivulji generirava s pomočjo dveh funkcij: "random\_konveksna" in "notranja_konveksna". Prva dobi za parameter$j$, ki ponazarja število naključnih točk, ki jih bo funkcija generirala. Točke so podane z dvema vektorjema $a$ in $b$ dolžine $j$, ki vsebujeta naključna štvila na intevalu $[-0.5,0,5]$. Nato na teh dveh vektorjih pokličemo vgrajeno funkcijo "convhull", ki za podano množico točk, vrne vektor indeksov točk $h$, ki razpenjajo  najmanjšo konveksno ovojnico, ki vsebuje vse točke, podane v argumentu. Funkcija torej na koncu vrne trojico vektorjev $a,b$ in $h$. FUnkcija "notranja\_konveksna" pa deluje tako, da najprej iz vektorjev $a$ in $b$, ki ju vrne"random\_konveksna" odstrani elemente na mestih, ki so podani v vektorju $h$. 
+Splošni konveksni krivulji generirava s pomočjo dveh funkcij: "random\_konveksna" in "notranja\_konveksna". Prva dobi za parameter$j$, ki ponazarja število naključnih točk, ki jih bo funkcija generirala. Točke so podane z dvema vektorjema $a$ in $b$ dolžine $j$, ki vsebujeta naključna štvila na intevalu $[-0.5,0,5]$. Nato na teh dveh vektorjih pokličemo vgrajeno funkcijo "convhull", ki za podano množico točk, vrne vektor indeksov točk $h$, ki razpenjajo  najmanjšo konveksno ovojnico, ki vsebuje vse točke, podane v argumentu. Funkcija torej na koncu vrne trojico vektorjev $a,b$ in $h$. FUnkcija "notranja\_konveksna" pa deluje tako, da najprej iz vektorjev $a$ in $b$, ki ju vrne"random\_konveksna" odstrani elemente na mestih, ki so podani v vektorju $h$. Nato izmed preostalih točk naključno izbere 40% le-teh in jih vrne kot vektorja $a1$ in $b1$. Na dani množici točk ponovno pokličeva funkcijo "convhul" rezultat pa shranimo kot $l$. Funkcija  "notranja\_konveksna" vrne trojico "a1,a2$ in $l$. Primer generiranih splošnih konveksnih krivulj je prikazan v grafu spodaj.
 
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=90mm]{graf_elipsa2.jpg}
+\caption{Graf napake v razmerju s številom premic \label{overflow}}
+\end{figure} 
 
 
-
-
-
-
-
-
+\subsection{Al
 
 
 
