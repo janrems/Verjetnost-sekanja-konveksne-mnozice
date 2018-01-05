@@ -10,6 +10,7 @@
 \date{2017}
 \newtheorem{definicija}{Definicija}
 \newtheorem{izrek}{Izrek}
+\addto\captionsenglish{\renewcommand{\figurename}{Graf}}
 
 
 \begin{document}
@@ -88,7 +89,7 @@ Sedaj ko smo intuitivno analitično dokazali postavljeno hipotezo, si oglejmo š
 
 \subsection{Shema eksperimenta}
 
-Eksperimentalnega dela projekta se bova lotila z metodo \textit{Monte Carlo}. Z generiranjem velikega števila naključnih premic in veliko ponovitvami poizkusa, bova želela potrditi postavljeno hipotezo, oz. se čim bolj približati rezultatu, ki jo le-ta napoveduje. Ker je naša mera $\mu$ invariantna za toge premike, je vseeno, kje v $\mathbb{R}^2$ se nahajata konveksni krivulji. Zato zadostuje, da delamo zgolj z krivuljami, ki so generirane simetrično glede na izhodišče kordinatnega sistema, oziroma so tako generirani vhodni podatki, ki množice določajo. Eksperiment sva razdelila na štiri podnaloge:
+Eksperimentalnega dela projekta sva se lotila z metodo \textit{Monte Carlo}. Z generiranjem velikega števila naključnih premic in veliko ponovitvami poizkusa, sva želela potrditi postavljeno hipotezo, oz. se čim bolj približati rezultatu, ki jo le-ta napoveduje. Ker je naša mera $\mu$ invariantna za toge premike, je vseeno, kje v $\mathbb{R}^2$ se nahajata konveksni krivulji. Zato zadostuje, da delamo zgolj z krivuljami, ki so generirane simetrično glede na izhodišče kordinatnega sistema, oziroma so tako generirani vhodni podatki, ki množice določajo.  Ideja je sledeča: \textit{generirati dve naključni konveksni krivulji} $\gamma$ in $\gamma'$, kjer je $\gamma'$ strogo vsebovana v $\gamma$ in pa \textit{naključno premico}, ki seka $\gamma$ ter ugotoviti, ali premica seka tudi $\gamma'$. Z mnogo ponovitvami implementiranega algoritma, bomo lahko \textit{ocenili} verjetnost, da naključna premica, ki seka večjo konveksno krivuljo, seka tudi manjšo. Eksperiment sva razdelila na štiri podnaloge:
 
 \begin{itemize}
 \item generiranje premic
@@ -98,17 +99,56 @@ Eksperimentalnega dela projekta se bova lotila z metodo \textit{Monte Carlo}. Z 
 \end{itemize}
 
 
+\textit{Simulacije geometrijskega problema} sva se lotila postopoma. Na začetku sva poskušala preveriti najino hipotezo na enostavnejših konveksnih krivuljah - \textit{elipsah}, kasneje pa sva obravnavala konveksne krivulje \textit{splošnejše} oblike. Pri delu z elipsami je bil cilj napisati program, ki je sposoben obvladovanja osnovnih ukazov: \textit{generiranja elips in premic} ter prepoznavanja, kdaj te premice res sekajo naše objekte. Ta orodja so nama pomagala pri nadaljnem delu, ko sva, kot že omenjeno, z generiranjem naključnih konveksnih krivulj problem \textit{posplošila}.
+
+Drugi del izziva je predstavljal \textit{generiranje naključnih premic}. Za to obstaja več načinov. Eden takšnih je tak, kot je opisano v definicji: naključno določimo par $(p,\theta)$, kjer $p$ predstavlja oddaljenost premice do izhodišča, $\theta$ pa kot med premico in $x$ osjo. Ker so naju zanimale le tiste premice, ki sekaj večjo od krivulj se pravi $\gamma$, sva poizkusila tudi z \textit{alternativnim pristopom} generiranja naključnih premic in sicer z določitvijo parov \textit{naključnih točk} znotraj večje konveksne krivulje ter s tem premice, ki skozi njih potekajo. Tako sva dobila generirane le premice, ki z gotovostjo sekajo $\gamma$ in sva zato morala preveriti zgolj, ali sekajo tudi $\gamma'$. Zanimalo naju je tudi, kako se rezultati spremenijo ob drugačnem generiranju naključnih premic.
+
+Po opravljenih simulacijah naju je, poleg \textit{ujemanja} eksperimentalnega rezultata s postavljeno hipotezo, zanimalo tudi kako hitro dobljeni približek \textit{konvergira} k točnemu  rezultatu, ki sva ga dobila z analitičnim pristopom. Delo je potekalo v programskem okolju \textit{Matlab}.
+
+\subsection{Generiranje premic}
+Pri projektu se je izkazalo, da je zelo pomembno, kako generiramo naključne premice. Da dobimo željeni rezultat, je potrebno generirati par $(p, \theta)$ iz enakomerno zvezne porazdelitve, kjer $p$ predstavlja oddaljenost iz izhodišča in teče med $0$ in najbolj oddaljeno točko večje konveksne krivulje od izhodišča, $\theta$ pa predstavlja kot med premico in $x$-osjo ter teče med $0$ in $2\pi$. Matriko velikosti $n\times2$ z $n$ pari takih parametrov sva potem s pomožno funkcijo spremenila v matriko velikosti $n\times2$, kjer je prvi stolpec vseboval koeficiente $k$, drugi pa začetne vrednosti $n$ iz eksplicitnega zapisa premic $y=k\cdot x+n$. To nama je omogočilo, da sva določila daljice s krajišči izven večje krivulje, s katerimi sva sekala obe krivulji.
+
+Poskusila sva tudi alternativno: generirala sva pare točk v večji konveksni množici in skozi njih potegnila premice. Izkazalo se je, da tak način generiranja premic ne pripelje do istega rezultata, saj je že za elipse v središču prišlo do velike napake. Da so premice generirane enakomerno glede na parametre $p$ in $\theta$ se je torej izkazalo za ključno.
+
+\subsection{Generiranje konveksnih krivulj}
+Pri generiranju konveksnih krivulj sva se odločila da iz enostavnejših konveksnih krivulj preideva na zahtevnejše in splošnejše primere. Začela sva z generiranjem elips, kjer je tudi notranja elipsa kocentrična. Nato sva obnašanje algoritma želela preveriti na primerih, kjer notranje krivulje niso nujno kocentrične, torej se nahajajo na poljubnem mestu znotraj zunanje krivulje. Zaradi olajšanja konstrukcije takih krivulj sva se odločila za delo s krožnicami. Nazadnje pa sva zgenerirala še naključni oziroma poljubni konveksni krivulji. 
+
+\subsubsection{Elipse}
+Za generiranje elips sva napisala funkcijo ``elipsa'', ki za vhodne podatke dobi parametra $xmax$ in $ymax$, ki določata največji možni števili $a$ in $b$, ki se pojavita v parametriziranem zapisu elipse $x=a \cos(t), y=b \sin(t), t\in [0, 2\pi)$. Kot izhod vrne dva poligona točk v obliki elipse z naključno izbranima parametroma $a \in (0, xmax)$ in $b \in (0, ymax)$ iz enakomerne zvezne porazdelitve za veliko elipso in $a_m \in (0, a)$ in $b_m \in (0, b)$ za malo elipso. V zadnjem koraku sva združili funkciji, ki generirata premice in elipsi ter dodala funkcijo, ki šteje presečišča med krivuljami. Za lažjo predstavo si oglejmo sliko 1:
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=60mm]{graf_primer.jpg}
+\caption{Primer generiranih elips in premic \label{overflow}}
+\end{figure} 
+
+Na sliki 1 vidimo 2 elipsi generirani s funkcijo ``elipsa'' s parametroma $xmax=3$ in $ymax=3$ in 15 premic z naključnima parametroma $(p, \theta)$ kot opisano zgoraj. V zadnjem koraku sva uporabilo funkcijo, ki šteje presečišča premic z obema elipsama ter število presečišč z manjšo krivuljo delila s številom presečišč z večjo. Rezultat sva primerjala z oceno razmerij obsega. 
 
 
-To so simulacijske metode, ki s pomočjo naključnih števil in velikega števila izračunov in ponavljanja omogočajo predvidevanje obnašanja zapletenih matemtičnih sistemov. Ideja je sledeča: \textit{generirati dve naključni konveksni krivulji} $\gamma$ in $\gamma'$, kjer je $\gamma'$ strogo vsebovana v $\gamma$ in pa \textit{naključno premico}, ki seka $\gamma$ ter ugotoviti, ali premica seka tudi $\gamma'$. Z mnogo ponovitvami implementiranega algoritma, bomo lahko \textit{ocenili} verjetnost, da naključna premica, ki seka večjo konveksno krivuljo, seka tudi manjšo.
 
-\textit{Simulacije geometrijskega problema} se bova lotila postopoma. Na začetku bova poskušala preveriti najino hipotezo na enostavnejših konveksnih krivuljah - \textit{elipsah}, kasneje pa bova obravnavala konveksne krivulje \textit{splošnejše} oblike. Pri delu z elipsami je cilj napisati program, ki bo sposoben obvladovanja osnovnih ukazov: \textit{generiranje elips in premic} ter prepoznavanja, kdaj te premice res sekajo naše objekte. Ta orodja nama bodo pomagala pri nadaljnem delu, ko bova kot že omenjeno z generiranjem naključnih konveksnih krivulj, problem \textit{posplošila}.
 
-Drugi del izziva bo predstavljal \textit{generiranje naključnih premic}. Za to obstaja več ekvivalentnih načinov. Eden takšnih je tak, kot je opisano v definicji: naključno določimo par $(p,\theta)$, kjer $p$ predstavlja oddaljenost premice do izhodišča, $\theta$ pa kot med premico in $x$ osjo. Ker naju zanimajo le tiste premice, ki sekaj večjo od krivulj se pravi $\gamma$, bova poizkusila tudi z \textit{alternativnim pristopom}, h generiranju naključnih premic in sicer z določitvijo dveh \textit{naključnih točk} ter s tem premice, ki bo skozi njiju potekala. Prva točka bo ležala \textit{znotraj večje od krivulj}, med tem ko bo druga \textit{kjer koli na dani ravnini}. Tako bova dobila generirane le premice, ki bodo z gotovostjo sekale $\gamma$ in bova zato morala preveriti zgolj, ali sekajo tudi $\gamma'$.
 
-Po opravljenih simulacijah naju bo, poleg \textit{ujemanja} eksperimentalnega rezultata s postavljeno hipotezo, zanimalo tudi kako hitro bo dobljeni približek \textit{konvergiral} k točnemu  rezultatu, ki ga bova dobila z analitičnim pristopom. Poleg tega bova pozorna tudi na \textit{časovno zahtevnost} napisanih algoritmov in njihovo obnašanje v odvisnosti od izbire načina generiranja naključnih premic. 
 
-Delo bo potekalo v programskem okolju \textit{Matlab}.
+
+\subsection{Analiza dobljenih rezultatov}
+Razmeroma zaneslijve rezultate sva dobila, če sva preko posameznega para konveksnih krivulj generirala več kot 300 premic. Zato sva generirala 1000 parov elips in 400 parov konveksnih krivulj ter za vsak par 1000 premic in preštela presečišča z obema krivuljama. Rezultate sva shranila v matriko velikosti $1000 \times 4$ za elipse, ki po vrsticah prikazujejo posamezen poskus, po stolpcih pa razmerje obsegov, razmerje presečišč, absolutno razliko in predznačeno razliko oziroma matriko $400 \times 5$ za splošne krivulje, ki vsebuje dodaten stolpec: števila sekanja večje krivulje. 
+Zanimalo naju je tudi, kako hitra je konvergenca najine metode, oz. koliko premic je potrebno generirati za posamezen par elips, da bo rezultat razmeroma točen. Rezultate sva dobila tako, da sva za vsak par konveksnih krivulj primerjala absolutno razliko do točnega rezultata po vsakih 30 dodatnih premicah. 
+
+
+\subsubsection{Elipsa}
+Povprečje absolutnih vrednosti razlike med razmerjem obsegov in razmerjem premic, ki sekajo eno in drugo krivuljo je bila 0.0125, če pa dovolimo predznačeno razliko, se je v povprečju zmanjšala na 0.000046 \footnote[1]{Celotna tabela rezultatov je dosegljiva na github repozitoriju}. Standardni odklon razlik je bil TUKI VSTA STANDARDNI ODKLON. Rezultati se skladajo z najinimi pričakovanji, morda je nekoliko presenetljiv velik standardni odklon, kar pomeni, da metoda ne deluje najbolje za posamezne krivulje, točne rezultate dobimo šele v povprečju.
+
+Graf 2 prikazuje konvergenco metode na primeru elips.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=90mm]{graf_elipsa2.jpg}
+\caption{Graf napake v razmerju s številom premic \label{overflow}}
+\end{figure} 
+
+\end{document}
+
+Iz grafa je razvidno, da se z večanjem premic vedno bolj približujemo pravemu rezultatu, vendar je konvergenca počasna. 
 
  
 
