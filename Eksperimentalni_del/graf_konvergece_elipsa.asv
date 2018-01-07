@@ -1,3 +1,6 @@
-30
-for i 1:length(tabela_ospe(:,1))
-    plot(tabela_ospe(
+%Nariše graf absolutnega odmika od pri?akovanega rezultata pri sekanju neke
+%krivulje z razli?nim številom premic
+t = 10:30:1000;
+
+povprecna_napaka = mean(tabela_ospe,1);
+plot(t,povprecna_napaka)

@@ -14,10 +14,11 @@ function [tabela] = rezultati_zamaknjena(n_poizkusov,n_premic,rmax)
         tabela(i,5) = n_pres_v;
     end
     %For zanka za vsako kroznico"n_poizkusov"-krat pokli?e funkcijo verjetnost. 
-    %Nato v prvi stolpecmatrike shranimo razmerje sekanj ve?je in manjše kroznice. 
-    %V 2.stolpec zapišemo razmerje obsegov. V 3. stolpcu je absolutna razlika
+    Nato v prvi stolpec
+    %matrike shranimo razmerje sekanj ve?je in manjše krivulje. V 2.
+    %stolpec zapišemo razmerje obsegov. V 3. stolpcu je absolutna razlika
     %vrednosti v prvih dveh stolpcih, v 4. pa predzna?ena. V 5. stolpcu
-    %je navedeno število sekanj ve?je krožnice.
+    %je navedeno število sekanj ve?je od krivulj.
 end
     
             

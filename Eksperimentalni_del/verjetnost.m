@@ -11,29 +11,25 @@ function [p,o,n_pres_v] = verjetnost(n_tock,n_premic,j)
     [a,b,h] = random_konveksna(n_tock); %vrne množico toèk, ki doloèa veèjo krivuljo
     [a1,b1,l] = notranja_konveksna(a,b,h); %vrne množico toèk ki doloèa anjšo krivuljo
     
-    pmax = sqrt(max(abs(a(h)))^2 + max(abs(b(h)))^2) + 0.001; %maksimalna potencialna oddaljenost veèje krivulje od izhodišèa
+    pmax = sqrt(max(abs(a(h)))^2 + max(abs(b(h)))^2) + 0.001; %maksimalna potencialna 
+    %oddaljenost veèje krivulje od izhodišèa
     krajisce = max(abs(a(h))) + 0.001; %maksimalna x kordinata veèje krivulje
-    A = vrni_tocke(n_premic,pmax,krajisce); %v matriki s štirimi stolpci vrne pare toèk izven veèje krivulje((-krajisce)*k +n,(krajisce)*k +n),ki doloèajo daljice. Te daljice so odseki premic, katerih parameter "p" teèe na intervalu (0,pmax). 
+    A = vrni_tocke(n_premic,pmax,krajisce); %v matriki s štirimi stolpci vrne pare toèk 
+    %izven veèje krivulje((-krajisce)*k +n,(krajisce)*k +n),ki doloèajo daljice. Te daljice 
+    %so odseki premic, katerih parameter "p" teèe na intervalu (0,pmax). 
     
-    [n_pres_v, A_nova] = presecisca (A,[a(h) b(h)]); %funkcija "presecisca" vrne število preseèišè daljic(veèkratnost ni šteta) zbranih v matriki "A" in veèje krivulje, ter podmatriko matrike "A", "A_nova", ki jo obimo tako, da iz matrike "A" odstranimo daljice, ki veèje krivulje ne sekajo.
+    [n_pres_v, A_nova] = presecisca (A,[a(h) b(h)]); %funkcija "presecisca" vrne število 
+    %preseèišè daljic(veèkratnost ni šteta) zbranih v matriki "A" in veèje krivulje, 
+    %ter podmatriko matrike "A", "A_nova", ki jo obimo tako, da iz matrike "A" odstranimo 
+    %daljice, ki veèje krivulje ne sekajo.
     
-    [n_pres_m] = presecisca_majhna (A_nova,[a1(l) b1(l)]);%funkcija "presecisca_majhna" vrne število preseèišè daljic(veèkratnost ni šteta) zbranih v matriki "A" in manjše krivulje.
+    [n_pres_m] = presecisca_majhna (A_nova,[a1(l) b1(l)]);%funkcija "presecisca_majhna" 
+    %vrne število preseèišè daljic(veèkratnost ni šteta) zbranih v matriki "A" in manjše 
+    %krivulje.
 
     p = n_pres_m/n_pres_v; %razmerje števila sekanj male in velike krivulje
     o_v = dolzina(a(h),b(h)); %dolžina velike krivulje
     o_m = dolzina(a1(l),b1(l)); %dolžina majhne krivulje
     o = o_m/o_v; %razmerje dolžin majhne in velike krivulje
-
-    
-    %     for i = 1:length(A(:,1))
-%         
-%         plot(A(i,[1 3]),A(i,[2 4]))
-%         hold on
-%     end
-%     plot(a(h),b(h))
-%     hold on
-%     plot(a1(l),b1(l))
-%     axis([-1 1 -1 1])
-%     hold off
 
 end

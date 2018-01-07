@@ -21,12 +21,8 @@ function [n_pres, A_nova] = presecisca (A,velika)
     end
     %for se zapelje ?ez vse dalice iz matrike "A", ter, ?e funkcija
     %"intersections" prese?iš?e najde, števcu "n_pres" prišteje 1(daljica
-    %konveksno množico seka ali 2-krat ali pa nobenkrat zato dolžino
-    %vektorja prese?iš? pred prištetjem deljimo z 2). ?e daljica krivulje
-    %ne seka, njen indeks dodamo v vktor izbris.
     
-    A_nova(izbris,:) = []; %Iz matrike "A_nova", ki je definirana kot "A", 
-    %daljice na mestih indeksov iz "izbrisa" pobrišemo
+    A_nova(izbris,:) = [];
 end
     
 

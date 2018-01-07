@@ -1,7 +1,14 @@
 function [p,o,n_pres_v] = verjetnost_kroznica (rmax,n,j)
+    % Funkcija kot argumente sprejme "rmax", ki v funkciji "elipsa" 
+    % omejuje parametra a in b(iz ena?be elipse), "n_premic" ki poda število premic katerih
+    % preseèišèa funkcija išèe ter parameter "j", ki doloèa seme. Funkcija
+    % vrne vrednost "p", ki je razmerje števila premic, ki sekajo majhno in
+    % veliko elipso, vrednost "o", ki je razmerje dolžine male in velike
+    % elipse ter vrednost "n_pres_v", ki pove koliko premic seka veèjo
+    % od elips. 
     seme= j; rand('seed',seme);
-    [velika,mala,pmax,r,rm] = kroznica_premaknjena(rmax);
-    A = vrni_tocke(n,pmax,pmax);
+    [velika,mala,r,rm] = kroznica_premaknjena(rmax);
+    A = vrni_tocke(n,r,r+0.01);
 %     for i = 1:n
 %         
 %         plot(A(i,[1 3]),A(i,[2 4]))

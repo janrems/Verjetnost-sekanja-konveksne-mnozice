@@ -4,7 +4,5 @@ function y =  nakljucni_vzorec(x,p)
     dim = size(x);
     n = dim(2);
     k = round(n* (p/100)); % "p"% "n"-ja zaokroženih na celo število
-    y = x(:,sort(randperm(n,k)));%randperm zgenerira naklju?ni vektor k celih števil med 0 in n 
-    %brez ponavljanja. Ta vektor uredimo in vzamemo kot indeksni vektor po
-    %dimenziji stolpcev matrike "x"
+    y = x(:,sort(randperm(n,k)));%randperm zgenerira naklju?ni vektor k celih števil med 0 in n brez pona
 end

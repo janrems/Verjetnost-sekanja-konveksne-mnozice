@@ -7,7 +7,7 @@ function [a,b,h] = random_konveksna (j)
     a = rand(j,1) -0.5;
     b = rand(j,1) -0.5;
     h = convhull(a,b); %Funkcija "convhull" za neko množico to?k, vrne vektor 
-    %indeksov tistih, ki dolo?ajo najmanjšo konveksno ovojnico danih to?k
+    %indeksov tistih, ki dolo?ajo najmanjšo konveksno ovojnico 
             
 end
 

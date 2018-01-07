@@ -16,19 +16,17 @@ function [p,o,n_pres_v] = verjetnost_elipsa (xmax,ymax,n,j)
     %premic, katerih parameter "p" teèe na intervalu (0,pmax). 
 
 
-    [n_pres_v, A_nova] = presecisca(A,velika);%vrne število prese?iš? ve?je elipse "n_pres" in
-    %matriko premic "A_nova"
+    [n_pres_v, A_nova] = presecisca(A,velika);
      
-    [n_pres_m] = presecisca_majhna(A_nova,mala);%vrne število prese?iš? manjše elipse s 
-    %daljicami iz "A_nova"
+    [n_pres_m] = presecisca_majhna(A_nova,mala);
     
-    p = n_pres_m/n_pres_v ;%razmerje števila prese?iš? ve?je in manjše elipse
+    p = n_pres_m/n_pres_v ;
     
-    o_velika = dolzina(velika(:,1),velika(:,2));%dolžina ve?je elipse
+    o_velika = dolzina(velika(:,1),velika(:,2));
     
-    o_mala = dolzina(mala(:,1),mala(:,2));%dolžina manjše elipse
+    o_mala = dolzina(mala(:,1),mala(:,2));
     
-    o = o_mala/o_velika;%razmerej dolžin ve?je in manjše elipse
+    o = o_mala/o_velika;
     
     
 end

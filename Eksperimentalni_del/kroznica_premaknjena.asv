@@ -18,8 +18,8 @@ rezult(:,2) = r*sin(t); %y kordinate množice to?k, ki dolo?ajo ve?jo krožnico
 rezult(length(t)+1,:) = rezult(1,:);%prva to?ka je enaka zadnji
 
 rezultm(:,1) = rm*cos(t) + xm ; %x kordinate množice to?k, ki dolo?ajo manjšo krožnico
-rezultm(:,2) = rm*sin(t) + ym; %y kordinate množice to?k, ki dolo?ajo manjšo krožnico
-rezultm(length(t)+1,:) = rezultm(1,:);%prva to?ka je enaka zadnji
+rezultm(:,2) = rm*sin(t) + ym; %y kordinate množice to?k, ki dolo?ajo ve?jo elipso
+rezultm(length(t)+1,:) = rezultm(1,:);
 
 % plot(rezult(:,1), rezult(:,2))
 % hold on
